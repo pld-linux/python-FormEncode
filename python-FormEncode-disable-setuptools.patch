@@ -1,0 +1,11 @@
+diff -Naur FormEncode-0.2.2.orig/setup.py FormEncode-0.2.2/setup.py
+--- FormEncode-0.2.2.orig/setup.py	2005-09-22 17:57:21.000000000 +0200
++++ FormEncode-0.2.2/setup.py	2005-10-23 21:37:24.000000000 +0200
+@@ -1,6 +1,4 @@
+-from ez_setup import use_setuptools
+-use_setuptools()
+-from setuptools import setup
++from distutils.core import setup
+ 
+ setup(name="FormEncode",
+       version="0.2.2",

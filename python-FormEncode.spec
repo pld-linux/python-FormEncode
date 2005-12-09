@@ -1,18 +1,17 @@
 %define module FormEncode
-%define _module formencode
 
 Summary:	HTML form validation, generation, and convertion package
 Summary(pl):	Modu³ do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
 Version:	0.4
-Release:	1
+Release:	2
 License:	PSF
 Group:		Development/Languages/Python
 Source0:	http://cheeseshop.python.org/packages/source/F/%{module}/%{module}-%{version}.tar.gz
 # Source0-md5:	797852a19505f7d919db96dd994d0484
-Patch0:		%{name}-disable-setuptools.patch
 URL:		http://formencode.org/
 BuildRequires:	python
+BuildRequires:	python-setuptools
 %pyrequires_eq	python-modules
 Requires:	python-elementtree
 BuildArch:	noarch
@@ -29,25 +28,31 @@ struktur. Pozwala na deklaratywny sposób definiowania regu³ poprawno¶ci
 i niezale¿ne od nich wype³nianie i generowanie formularzy.
 
 %prep
-%setup -q -n %{module}-%{version}
-%patch0 -p1
+%setup -q -c
 
 %build
-rm -rf ez_setup
-python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-python setup.py install \
-	--root=$RPM_BUILD_ROOT \
-	--optimize=2
 
-find $RPM_BUILD_ROOT%{py_sitescriptdir}/%{_module}/ -name \*.py | xargs rm -f
+%{_bindir}/easy_install \
+        --no-deps \
+        --script-dir="$RPM_BUILD_ROOT%{_bindir}" \
+        --install-dir="$RPM_BUILD_ROOT%{py_sitescriptdir}" \
+        --always-unzip \
+	--ignore-conflicts-at-my-risk \
+        %{SOURCE0}
+
+%py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_postclean
+
+echo '%{module}-%{version}-py%{py_ver}.egg' > $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}.pth
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{py_sitescriptdir}/%{_module}
-%doc docs/*.txt
+%{py_sitescriptdir}/%{module}*
+%doc %{module}*/docs/*.txt

@@ -28,26 +28,23 @@ struktur. Pozwala na deklaratywny sposób definiowania regu³ poprawno¶ci
 i niezale¿ne od nich wype³nianie i generowanie formularzy.
 
 %prep
-%setup -q -c
+%setup -q -n %{module}-%{version}
 
 %build
+python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{_bindir}/easy_install \
-        --no-deps \
-        --script-dir="$RPM_BUILD_ROOT%{_bindir}" \
-        --install-dir="$RPM_BUILD_ROOT%{py_sitescriptdir}" \
-        --always-unzip \
-	--ignore-conflicts-at-my-risk \
-        %{SOURCE0}
+install -d build/scripts-%{py_ver}
+python ./setup.py install \
+        --single-version-externally-managed \
+        --optimize=2 \
+        --root=$RPM_BUILD_ROOT
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
-
-echo '%{module}-%{version}-py%{py_ver}.egg' > $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}.pth
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -55,4 +52,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{py_sitescriptdir}/%{module}*
-%doc %{module}*/docs/*.txt
+%{py_sitescriptdir}/*formencode*
+%doc docs/*.txt

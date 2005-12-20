@@ -36,7 +36,6 @@ python setup.py build
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d build/scripts-%{py_ver}
 python ./setup.py install \
         --single-version-externally-managed \
         --optimize=2 \

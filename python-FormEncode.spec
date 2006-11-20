@@ -14,6 +14,7 @@ BuildRequires:	python
 BuildRequires:	python-setuptools
 %pyrequires_eq	python-modules
 Requires:	python-elementtree
+Requires:   python-setuptools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

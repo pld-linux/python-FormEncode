@@ -7,11 +7,12 @@ Version:	0.6
 Release:	1
 License:	PSF
 Group:		Development/Languages/Python
-Source0:	http://cheeseshop.python.org/packages/source/F/%{module}/%{module}-%{version}.tar.gz
+Source0:	http://cheeseshop.python.org/packages/source/F/FormEncode/%{module}-%{version}.tar.gz
 # Source0-md5:	8504d515a8e25f1bba6842224b7494ae
 URL:		http://formencode.org/
 BuildRequires:	python
 BuildRequires:	python-setuptools
+BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
 Requires:	python-elementtree
 BuildArch:	noarch
@@ -50,6 +51,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc docs/*.txt
 %{py_sitescriptdir}/%{module}*
 %{py_sitescriptdir}/*formencode*
-%doc docs/*.txt

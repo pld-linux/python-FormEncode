@@ -1,7 +1,7 @@
 %define module FormEncode
 
 Summary:	HTML form validation, generation, and convertion package
-Summary(pl):	Modu≥ do walidacji, tworzenia i konwersji formularzy HTML
+Summary(pl.UTF-8):   Modu≈Ç do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
 Version:	0.6
 Release:	2
@@ -22,10 +22,10 @@ FormEncode validates and converts nested structures. It allows for a
 declarative form of defining the validation, and decoupled processes
 for filling and generating forms.
 
-%description -l pl
-FormEncode s≥uøy do sprawdzania poprawno∂ci i konwersji zagnieødøonych
-struktur. Pozwala na deklaratywny sposÛb definiowania regu≥ poprawno∂ci
-i niezaleøne od nich wype≥nianie i generowanie formularzy.
+%description -l pl.UTF-8
+FormEncode s≈Çu≈ºy do sprawdzania poprawno≈õci i konwersji zagnie≈ºd≈ºonych
+struktur. Pozwala na deklaratywny spos√≥b definiowania regu≈Ç poprawno≈õci
+i niezale≈ºne od nich wype≈Çnianie i generowanie formularzy.
 
 %prep
 %setup -q -n %{module}-%{version}

@@ -1,7 +1,7 @@
 %define module FormEncode
 
 Summary:	HTML form validation, generation, and convertion package
-Summary(pl.UTF-8):   Moduł do walidacji, tworzenia i konwersji formularzy HTML
+Summary(pl.UTF-8):	Moduł do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
 Version:	0.6
 Release:	2

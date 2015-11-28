@@ -32,12 +32,12 @@ i niezależne od nich wypełnianie i generowanie formularzy.
 %setup -q -n %{module}-%{version}
 
 %build
-python setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python ./setup.py install \
+%py_install \
         --single-version-externally-managed \
         --optimize=2 \
         --root=$RPM_BUILD_ROOT

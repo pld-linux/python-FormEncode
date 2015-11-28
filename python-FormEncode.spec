@@ -4,7 +4,7 @@ Summary:	HTML form validation, generation, and convertion package
 Summary(pl.UTF-8):	Moduł do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
 Version:	1.2.4
-Release:	1
+Release:	2
 License:	PSF
 Group:		Development/Languages/Python
 Source0:	http://cheeseshop.python.org/packages/source/F/FormEncode/%{module}-%{version}.tar.gz

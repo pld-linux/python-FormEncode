@@ -39,6 +39,7 @@ BuildRequires:	python3-pycountry >= 16.10.23
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
+BuildRequires:	sed >= 4.0
 Requires:	python-modules >= 1:2.6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -86,6 +87,8 @@ Dokumentacja API modułu Pythona FormEncode.
 
 # uses network to validate domains (with one no longer valid anyway)
 %{__rm} formencode/tests/test_email.py
+# validator doctests cover Email and URL validators which include DNS lookups
+%{__sed} -i -e '/^modules / s/, validators//' formencode/tests/test_doctests.py
 
 %build
 %if %{with python2}

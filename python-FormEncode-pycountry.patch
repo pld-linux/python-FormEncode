@@ -1,0 +1,27 @@
+--- FormEncode-1.3.1/formencode/national.py.orig	2016-08-08 13:33:45.000000000 +0200
++++ FormEncode-1.3.1/formencode/national.py	2020-06-09 06:40:30.941129354 +0200
+@@ -85,19 +85,19 @@
+     _l = lambda t: gettext.dgettext('iso639', t)
+ 
+     def get_countries():
+-        c1 = set([(e.alpha2, _c(e.name)) for e in pycountry.countries])
++        c1 = set([(e.alpha_2, _c(e.name)) for e in pycountry.countries])
+         ret = c1.union(country_additions + fuzzy_countrynames)
+         return ret
+ 
+     def get_country(code):
+-        return _c(pycountry.countries.get(alpha2=code).name)
++        return _c(pycountry.countries.get(alpha_2=code).name)
+ 
+     def get_languages():
+-        return [(e.alpha2, _l(e.name)) for e in pycountry.languages
+-            if e.name and getattr(e, 'alpha2', None)]
++        return [(e.alpha_2, _l(e.name)) for e in pycountry.languages
++            if e.name and getattr(e, 'alpha_2', None)]
+ 
+     def get_language(code):
+-        return _l(pycountry.languages.get(alpha2=code).name)
++        return _l(pycountry.languages.get(alpha_2=code).name)
+ 
+ 
+ ############################################################

@@ -10,13 +10,14 @@ Summary:	HTML form validation, generation, and convertion package
 Summary(pl.UTF-8):	Moduł do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
 Version:	1.3.1
-Release:	4
+Release:	5
 License:	PSF
 Group:		Development/Languages/Python
 #Source0Download: https://pypi.org/project/FormEncode/
 Source0:	https://files.pythonhosted.org/packages/source/F/FormEncode/%{module}-%{version}.tar.gz
 # Source0-md5:	16fbefb206064eb93a6719f054a19b3b
 Patch0:		%{name}-pycountry.patch
+Patch1:		versions.patch
 URL:		http://formencode.org/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.6
@@ -84,6 +85,7 @@ Dokumentacja API modułu Pythona FormEncode.
 %prep
 %setup -q -n %{module}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 # uses network to validate domains (with one no longer valid anyway)
 %{__rm} formencode/tests/test_email.py

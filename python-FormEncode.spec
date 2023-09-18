@@ -9,39 +9,44 @@
 Summary:	HTML form validation, generation, and convertion package
 Summary(pl.UTF-8):	Moduł do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
-Version:	1.3.1
-Release:	5
+# keep 2.0.x here for python2 support
+Version:	2.0.1
+Release:	1
 License:	PSF
 Group:		Development/Languages/Python
 #Source0Download: https://pypi.org/project/FormEncode/
 Source0:	https://files.pythonhosted.org/packages/source/F/FormEncode/%{module}-%{version}.tar.gz
-# Source0-md5:	16fbefb206064eb93a6719f054a19b3b
-Patch0:		%{name}-pycountry.patch
-Patch1:		versions.patch
+# Source0-md5:	65a9ba7220890c3d26904bdafe3a5a35
 URL:		http://formencode.org/
 %if %{with python2}
-BuildRequires:	python-modules >= 1:2.6
+BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
+BuildRequires:	python-setuptools_scm < 6
+BuildRequires:	python-setuptools_scm_git_archive
 %if %{with tests}
-BuildRequires:	python-dns
-BuildRequires:	python-nose
-BuildRequires:	python-pycountry >= 16.10.23
+BuildRequires:	python-dns = 1.16.0
+BuildRequires:	python-pycountry < 19
+BuildRequires:	python-pytest < 4.7
+BuildRequires:	python-six
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-2to3 >= 1:3.2
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-2to3 >= 1:3.6
+BuildRequires:	python3-modules >= 1:3.6
 BuildRequires:	python3-setuptools
+BuildRequires:	python3-setuptools_scm
+BuildRequires:	python3-setuptools_scm_git_archive
 %if %{with tests}
-BuildRequires:	python3-dns
-BuildRequires:	python3-nose
+BuildRequires:	python3-dns >= 2.0.0
 BuildRequires:	python3-pycountry >= 16.10.23
+BuildRequires:	python3-pytest
+BuildRequires:	python3-six
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sed >= 4.0
-Requires:	python-modules >= 1:2.6
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,7 +64,7 @@ poprawności i niezależne od nich wypełnianie i generowanie formularzy.
 Summary:	HTML form validation, generation, and convertion package
 Summary(pl.UTF-8):	Moduł do walidacji, tworzenia i konwersji formularzy HTML
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.6
 
 %description -n python3-%{module}
 FormEncode validates and converts nested structures. It allows for a
@@ -84,8 +89,6 @@ Dokumentacja API modułu Pythona FormEncode.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
-%patch1 -p1
 
 # uses network to validate domains (with one no longer valid anyway)
 %{__rm} formencode/tests/test_email.py
@@ -97,7 +100,7 @@ Dokumentacja API modułu Pythona FormEncode.
 %py_build
 
 %if %{with tests}
-%{__python} -m nose build-2/lib/formencode/tests
+%{__python} -m pytest build-2/lib/formencode/tests
 %endif
 %endif
 
@@ -105,7 +108,7 @@ Dokumentacja API modułu Pythona FormEncode.
 %py3_build
 
 %if %{with tests}
-%{__python3} -m nose build-3/lib/formencode/tests
+%{__python3} -m pytest build-3/lib/formencode/tests
 %endif
 %endif
 

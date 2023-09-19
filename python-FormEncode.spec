@@ -100,6 +100,7 @@ Dokumentacja API modułu Pythona FormEncode.
 %py_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python} -m pytest build-2/lib/formencode/tests
 %endif
 %endif
@@ -108,6 +109,7 @@ Dokumentacja API modułu Pythona FormEncode.
 %py3_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python3} -m pytest build-3/lib/formencode/tests
 %endif
 %endif

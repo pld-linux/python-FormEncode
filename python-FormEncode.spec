@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Moduł do walidacji, tworzenia i konwersji formularzy HTML
 Name:		python-%{module}
 # keep 2.0.x here for python2 support
 Version:	2.0.1
-Release:	2
+Release:	3
 License:	PSF
 Group:		Development/Languages/Python
 #Source0Download: https://pypi.org/project/FormEncode/
